@@ -1,0 +1,192 @@
+/* 印刷時の用紙設定 */
+@page {
+  size: A4; /* 用紙サイズ */
+  margin: 0; /* ヘッダー・フッダーを無効化 */
+}
+
+/* 要素の初期化 */
+* {
+  /* マージン・パディングをリセットした方がデザインしやすい */
+  margin: 0;
+  padding: 0;
+  /* デフォルトのフォント */
+  color: #191970;
+  font-family: "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック体", YuGothic,
+    sans-serif;
+  font-size: 11pt;
+  font-weight: normal;
+  /* 背景色・背景画像を印刷する（Chromeのみで有効） */
+  -webkit-print-color-adjust: exact;
+}
+
+/* リスト初期化 */
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* ページレイアウト (section.sheet を１ページとする) */
+.sheet {
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  page-break-after: always;
+
+  /* 用紙サイズ A4 */
+  height: 297mm;
+  width: 210mm;
+
+  /* 余白サイズ */
+  padding-top: 32mm;
+  padding-left: 27mm;
+  padding-right: 27mm;
+}
+
+/* プレビュー用のスタイル */
+@media screen {
+  body {
+    background: #e0e0e0;
+  }
+  .sheet {
+    background: white; /* 背景を白く */
+    box-shadow: 0 0.5mm 2mm rgba(0, 0, 0, 0.3); /* ドロップシャドウ */
+    margin: 5mm auto;
+  }
+}
+
+/* 汎用クラス */
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.clear-element {
+  clear: both;
+}
+
+/* 大枠の指定 */
+
+div.row_1 {
+  height: 14mm;
+}
+div.row_2 {
+  height: 12mm;
+}
+
+div.row_3 {
+  height: 55mm;
+}
+div.row_3 div.col_1 {
+  width: 90mm;
+  float: left;
+}
+div.row_3 div.col_2 {
+  position: relative;
+  z-index: 2;
+  padding-top: 10mm;
+  float: left;
+}
+div.row_4 {
+  height: 18mm;
+}
+div.row_5 {
+  height: 120mm;
+}
+div.row_6 {
+  height: 18mm;
+}
+
+/* 個別のスタイル指定 */
+
+
+/* タイトル */
+h1 {
+  background: #3366cc;
+  font-size: 30px;
+  font-weight: normal;
+  letter-spacing: 30px;
+  color: #ffffff;
+}
+
+/* 顧客名・自社名 */
+h2 {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+/* 顧客名 */
+h2.customer_name {
+  text-decoration: underline;
+}
+
+img.stamp{
+  position: absolute;
+  z-index: 1;
+  top: 10mm;
+  left: 48mm;
+  height: 17mm;
+  width: 17mm;
+}
+
+/* テーブル共通 */
+table,
+th,
+td {
+  border: 1px #264d99 solid;
+  border-collapse: collapse;
+  padding: 1px 5px;
+}
+
+table th {
+  background: #3366cc;
+  font-weight: normal;
+  color: #ffffff;
+}
+table td {
+  text-align: right;
+}
+
+/* テーブル 総額欄 */
+table.summary th {
+  font-size: 14pt;
+  width: 32mm;
+}
+table.summary td {
+  font-size: 14pt;
+  width: 40mm;
+}
+
+/* テーブル 明細欄 */
+table.detail {
+  width: 100%;
+}
+table.detail tr {
+  height: 6mm;
+}
+table.detail th.item {
+  width: 50%;
+}
+table.detail th.unit_price {
+  width: 18%;
+}
+table.detail th.amount {
+  width: 14%;
+}
+table.detail th.subtotal {
+  width: 18%;
+}
+
+table.detail td.space {
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+}
+table.detail tr.dataline:nth-child(odd) td {
+  background-color: #ccddff;
+}
+table.detail tr.dataline:nth-child(even) td {
+  background-color: #ffffff;
+}
